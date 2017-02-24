@@ -8,7 +8,7 @@
 		'pathQuery': "query=",
 		'pathQuerySuffix': "",
 		'preFilter': "",
-		'filter': "\:\"([^\"]+)\",\"data\":{\"link\":\"([^\"]+)\"",
+		'filter': "value\"\:\"([^\"?]+)?\".+?\{\"link\"\:\"\/([^\"?]+)?.+?\}\}",
 		'filterName': 1,
 		'filterFile': 2,
 		'filePrefix': "",
@@ -20,9 +20,9 @@
 	'levels': [
 		{
 			'label': "Manga",
-			'pathSuffix': "/alphabetical",
-			'preFilter': '<ul class="series_alpha">',
-			'filter': '[^]?<li><a href="/([^"]+)"> ?(.+?)</a>(<span class="mangacompleted">[^<]+?</span>)?</li>([^]?</ul>[^]*?<ul class="series_alpha">)?',
+			'pathSuffix': "/list",
+			'preFilter': '<div class="tile col-sm-6">',
+			'filter': '<a href=\"\/([^\"]+)?\" title="([^\"]+)?',
 			'filterName': 2,
 			'filterFile': 1,
 			'filePrefix': "/",
@@ -33,8 +33,8 @@
 		},
 		{
 			'label': "Manga",
-			'preFilter': '<div id="chapterlist">[^]+?</tr>',
-			'filter': '[^]?<tr>[^]+?<a href="/[^"]+/([^/"]+?)">(.+?)</a>[^]+?</tr>',
+			'preFilter': '<div class="expandable chapters-link[^]+?</tr>',
+			'filter': '[^]?<tr>[^]+?<a href="\/[^]+?\/([^"]+?)"[^]+?>([^]+?)<\/a>',
 			'filterName': 1,
 			'filterFile': 1,
 			'filePrefix': "/",
@@ -45,8 +45,8 @@
 		},
 		{
 			'label': "Chapter",
-			'preFilter': '<select id="pageMenu" name="pageMenu">',
-			'filter': '[^]?<option value="([^"]+)"[^>]*>(.+?)</option>',
+			'preFilter': '<select onchange[^]+?">',
+			'filter': '[^]?<option value="([^"]+)"[^>]*>(.+?)<\/option>',
 			'filterName': 2,
 			'filterFile': 1,
 			'filterId': 2,
@@ -59,7 +59,7 @@
 		{
 			'label': "Page",
 			'preFilter': '',
-			'filter': '<div id="imgholder">(?:<div id="zoomer"[^>]*>[^<]*</div>)?[^]?<a href="[^"]+"><img[^>]* src="([^"]+)"',
+			'filter': '<div id="fotocontext" [^]+?[^"]+?<img[^>]* src="([^"]+)"[^]+?<noscript>',
 			'filterName': 1,
 			'filterFile': 1,
 			'filePrefix': "",

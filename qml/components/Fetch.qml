@@ -72,7 +72,7 @@ Ajax {
 		while (results = re.exec(data)) {
 			if (lastIndex != 0 && results.index != lastIndex) {
 				console.log('start does not match: ' + lastIndex + ' != ' + results.index);
-				break;
+				//break;
 			}
 			console.log('checking filter starting from ' + lastIndex);
 			if (level.filterId == undefined) {
